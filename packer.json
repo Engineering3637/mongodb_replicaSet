@@ -32,7 +32,27 @@
       "cookbook_paths":  ["./cookbooks"],
       "run_list": ["mongodb::default"]
 
-    }
+    },
+    {
+     "type": "shell",
+     "inline": ["sudo mkdir -p /etc/pki/tls/certs"]
+   },
+   {
+     "type": "file",
+     "source": "logstash-forwarder.crt",
+     "destination": "/home/ubuntu/logstash-forwarder.crt"
+
+   },
+
+   {
+     "type": "shell",
+     "script": "filebeatprovision.sh"
+   },
+   {
+     "type": "file",
+     "source": "filebeat.yml",
+     "destination": "/home/ubuntu/filebeat.yml"
+   }
 
   ]
 
